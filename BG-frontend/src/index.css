@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+body{
+background-color:#09162e;
+}
+.slider{
+    -webkit-appearance: none;
+    height: 100%;
+    background: transparent;
+}
+
+.slider::-webkit-slider-thumb{
+    appearance: none;
+    
+}
