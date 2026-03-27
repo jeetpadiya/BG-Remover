@@ -14,7 +14,7 @@ const register = async (req, res) => {
         const existingUser = await User.findOne({ email })
 
         if (existingUser) {
-            res.status(400).json({ success: false, message: "user already exist" })
+          return  res.status(400).json({ success: false, message: "user already exist" })
         }
 
         const salt = await bcrypt.genSalt(10)
@@ -41,7 +41,7 @@ const register = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
-        res.status(201).json({success:true,message:"User Registred successfull",User:newUser,token})
+        res.status(201).json({success:true,message:"User Registred successfull",user:newUser,token})
 
 
     } catch (error) {
@@ -55,7 +55,7 @@ const login = async(req,res)=>{
             const {email,password} = req.body
             
             if(!email || !password){
-                return res.status(400).json({success:true,message:"Please fill the all fields"})
+                return res.status(400).json({success:false,message:"Please fill the all fields"})
             }
             
             const existingUser = await User.findOne({email})
@@ -67,7 +67,7 @@ const login = async(req,res)=>{
             const isMatch = await bcrypt.compare(password,existingUser.password)
 
             if(!isMatch){
-                return res.status(400).json({success:true,message:"Invalid credentails"})
+                return res.status(400).json({success:false,message:"Invalid credentails"})
             }
 
              const token = jwt.sign({ id: existingUser._id, email: existingUser.email, }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' })
@@ -81,7 +81,7 @@ const login = async(req,res)=>{
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
-        res.status(200).json({success:true,message:"User Logged in successfull",User:existingUser,token})
+        res.status(200).json({success:true,message:"User Logged in successfull",user:existingUser,token})
             
         } catch (error) {
              console.log(error)

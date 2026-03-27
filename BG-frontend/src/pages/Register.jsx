@@ -36,7 +36,6 @@ const Register = () => {
         email: formData.email,
         password: formData.password,
       })
-      navigate('/')
     } catch (error) {
       console.error('Registration error:', error)
       toast.error(error.message || 'Something went wrong')

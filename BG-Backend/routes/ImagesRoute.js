@@ -5,6 +5,6 @@ import {removeBgImage} from '../controllers/ImageController.js'
 
 const imageRouter = express.Router()
 
-imageRouter.post('/remove-bg',upload.single('image'),auth,removeBgImage)
+imageRouter.post('/remove-bg',auth,upload.single('image'),removeBgImage)
 
 export default imageRouter

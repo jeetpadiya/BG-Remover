@@ -4,7 +4,7 @@ const auth = async(req,res,next)=>{
     const token = req.header('Authorization')?.replace('Bearer ', '');
 
     if(!token){
-        return res.status(400).json({message:"Unauthorized"})
+        return res.status(401).json({success:false,message:"Unauthorized"})
     }
 
     try {
@@ -13,7 +13,7 @@ const auth = async(req,res,next)=>{
         next()
         
     } catch (error) {
-        res.status(401).send({error:'Please Authenticate.'})
+        return res.status(401).json({success:false,message:'Please authenticate.'})
     }
 }
 export default auth;

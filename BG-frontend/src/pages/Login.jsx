@@ -29,7 +29,6 @@ const Login = () => {
         email: userData.email,
         password: userData.password
       })
-      navigate('/')
     }
     catch (error) {
       console.log(error)

@@ -18,7 +18,17 @@ const Header = () => {
             <br className="max-sm:hidden"/>Whether for social media , markating  or personal projects our tools is designed  for everyone , ensuring  high-quality result in just  a few clicks 
           </p>
           <div>
-              <input onChange={e=>removeBg(e.target.files[0])} type="file" id="upload1" accept="image/" hidden   />
+              <input
+                onChange={e => {
+                  const file = e.target.files?.[0]
+                  removeBg(file)
+                  e.target.value = ''
+                }}
+                type="file"
+                id="upload1"
+                accept="image/*"
+                hidden
+              />
               <label className="inline-flex  gap-3 px-8 py-3.5 md:px-6 md:py-2.5 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700 text-white" htmlFor="upload1">
                 <span>Upload Image</span>
               </label>
