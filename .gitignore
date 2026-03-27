@@ -1,0 +1,5 @@
+# root
+.env
+.env.*
+BG-Backend/.env
+BG-frontend/.env
